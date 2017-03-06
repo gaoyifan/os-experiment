@@ -1,0 +1,13 @@
+sudo: false
+language: rust
+install:
+  - ls $HOME/.cargo/bin/mdbook || cargo install mdbook
+cache: cargo
+script:
+  - $HOME/.cargo/bin/mdbook build
+deploy:
+  provider: script
+  on:
+    branch: master
+  script: scripts/deploy.sh
+  skip_cleanup: true
