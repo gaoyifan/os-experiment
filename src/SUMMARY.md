@@ -1,0 +1,15 @@
+# Operating Systems (H) Experiment Guide
+
+- [关于本文档](about.md)
+- [课程信息](information.md)
+    - [实验介绍](introduction.md)
+    - [作业提交说明](commit.md)
+    - [课程资料](resources.md)
+- [实验一](ex1/index.md)
+    - [实验内容](ex1/index.md)
+        - [安装Linux操作系统](ex1/linux_install.md)
+        - [熟悉Linux操作系统的常用命令](ex1/linux_command.md)
+        - [学习使用bash](ex1/bash.md)
+        - [学习使用Git](ex1/git.md)
+        - [熟悉GitHub的使用流程](ex1/github.md)
+    - [作业提交](ex1/commit.md)
