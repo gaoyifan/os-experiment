@@ -47,12 +47,14 @@ echo "When the world turns its back on you, you turn your back on the world.\nTi
 Hello Linux
 ```
 
-且output.txt文件内容为：（注,执行`cat output.txt`查看文件内容）
+且output.txt文件内容为：
 
 ```
 When the world turns its back on you, you turn your back on the world.
 Timon(The Lion King)
 ```
+
+*注：执行`cat output.txt`查看文件内容*
 
 ## 参考资料
 
