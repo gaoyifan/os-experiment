@@ -1,5 +1,7 @@
 # Operating Systems (H) Experiment Guide
 
+![Travis CI Status](https://travis-ci.org/gaoyifan/os-experiment.svg?branch=master)
+
 ## 修订日志
 
 - 2017-3-2 新增课程介绍
