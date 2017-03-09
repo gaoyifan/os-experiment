@@ -1,6 +1,6 @@
 # Operating Systems (H) Experiment Guide
 
-![Travis CI Status](https://travis-ci.org/gaoyifan/os-experiment.svg?branch=master)
+[![Build Status](https://travis-ci.org/gaoyifan/os-experiment.svg?branch=master)](https://travis-ci.org/gaoyifan/os-experiment)
 
 ## 修订日志
 
