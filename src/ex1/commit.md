@@ -13,9 +13,7 @@
 
 Git仓库中包含一个可执行文件`hello_linux.sh`，其他文件将被测试程序忽略。
 
-## 测试环境
 
-根文件系统：[Ubuntu Core 16.04](https://partner-images.canonical.com/core/xenial/current/ubuntu-xenial-core-cloudimg-amd64-root.tar.gz)
 
 ## 截止时间
 

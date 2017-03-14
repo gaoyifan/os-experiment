@@ -13,3 +13,4 @@
         - [学习使用Git](ex1/git.md)
         - [熟悉GitHub的使用流程](ex1/github.md)
     - [作业提交](ex1/commit.md)
+    - [评分规则](ex1/score.md)
