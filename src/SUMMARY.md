@@ -25,3 +25,6 @@
         - [写在后面](ex2/after-reading.md)
     - [作业提交](ex2/commit.md)
     - [评分规则](ex2/score.md)
+- [实验三](ex3/index.md)
+    - [实验内容](ex3/index.md)
+    - [作业提交](ex3/commit.md)
