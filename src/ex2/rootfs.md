@@ -19,6 +19,7 @@
 # mknod -m 666 ./dev/zero c 1 5
 # mknod -m 666 ./dev/ptmx c 5 2
 # mknod -m 666 ./dev/tty c 5 0
+# mknod -m 666 ./dev/ttyS0 c 4 64
 ```
 ### 创建init程序
 
