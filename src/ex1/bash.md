@@ -38,7 +38,7 @@ cat > output.txt
 运行以下命令：
 
 ```
-echo "When the world turns its back on you, you turn your back on the world.\nTimon(The Lion King)" | ./hello_linux.sh
+echo -e "When the world turns its back on you, you turn your back on the world.\nTimon(The Lion King)" | ./hello_linux.sh
 ```
 
 运行后，如果代码正确，则屏幕显示：
