@@ -5,6 +5,7 @@
     - [实验介绍](introduction.md)
     - [作业提交说明](commit.md)
     - [课程资料](resources.md)
+    - [联系助教](contact.md)
 - [实验一](ex1/index.md)
     - [实验内容](ex1/index.md)
         - [安装Linux操作系统](ex1/linux_install.md)
