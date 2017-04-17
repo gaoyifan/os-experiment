@@ -13,3 +13,7 @@ function do_csv(){
     done
     IFS=$OLDIFS
 }
+
+function add_score(){
+    echo -n "$1 " >> $SCORE
+}
