@@ -33,5 +33,6 @@ for stu_id in * ; do
         add_score 0
         add_score 0
     fi
+    add_score 0 #late
     echo >> $SCORE
 done
