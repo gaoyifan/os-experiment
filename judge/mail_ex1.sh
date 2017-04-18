@@ -28,7 +28,7 @@ if grep -q $stu_id $SCORE; then
   2.存在hello_linux.sh文件...+${q2}分
   3.hello_linux.sh是可执行文件...+${q3}分
   4.hello_linux.sh文件使用了Linux/UNIX风格的换行符...+${q4}分
-  5.hello_linux.sh脚本执行结果正确...+${q1}分
+  5.hello_linux.sh脚本执行结果正确...+${q5}分
   6.逾期（扣分）...${m1}分
 总分： ${sum}分 （注：满分5分）
 
