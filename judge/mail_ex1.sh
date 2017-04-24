@@ -6,6 +6,9 @@ BASEDIR=$(dirname $(readlink -f $0))
 EXP_NAME=os-experiment-1
 SCORE=${BASEDIR}/${EXP_NAME}.score
 function hook_do_csv(){
+if [[ $SKIP_NON_EXIST ]] && ! grep -q $stu_id $SCORE; then
+    return
+fi
 (
 cat << EOF
 ${name}同学：
