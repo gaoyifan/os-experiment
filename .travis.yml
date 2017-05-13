@@ -1,10 +1,8 @@
-sudo: false
 language: rust
-install:
-  - ls $HOME/.cargo/bin/mdbook || cargo install mdbook
+sudo: false
 cache: cargo
-script:
-  - $HOME/.cargo/bin/mdbook build
+install: $HOME/.cargo/bin/mdbook -V || cargo install mdbook
+script: $HOME/.cargo/bin/mdbook build
 deploy:
   provider: script
   on:
