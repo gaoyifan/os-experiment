@@ -19,3 +19,8 @@
 
 * [实验一](ppt/ex1.pdf)
 * [实验二](ppt/ex2.pdf)
+
+## 书面作业
+
+* [Part A](ppt/HW-partA.docx)
+* [Part B](ppt/HW-partB.docx)
