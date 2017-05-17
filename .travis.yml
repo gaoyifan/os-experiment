@@ -1,7 +1,11 @@
 language: rust
 sudo: false
-cache: cargo
-install: $HOME/.cargo/bin/mdbook -V || cargo install mdbook
+cache: 
+  - cargo
+  - pip
+install: 
+  - $HOME/.cargo/bin/mdbook -V || cargo install mdbook
+  - pip install --user ghp-import
 script: $HOME/.cargo/bin/mdbook build
 deploy:
   provider: script
