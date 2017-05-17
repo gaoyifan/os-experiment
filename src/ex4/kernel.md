@@ -24,7 +24,7 @@ git://mirrors.ustc.edu.cn/linux.git
 
 ```shell
 cd linux-stable
-curl -o .config http://gaoyifan.github.io/os-experiment/ex4/config
+curl -o .config https://gaoyifan.github.io/os-experiment/ex4/config
 ```
 
 以上内核配置文件来源于ubuntu官方内核。开启了较多的选项，编译可能花费较长时间。
