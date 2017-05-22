@@ -8,4 +8,6 @@
 
 1. [Rapid Linux Kernel Dev/Test with QEMU, KVM and Dracut](http://blog.elastocloud.org/2015/06/rapid-linux-kernel-devtest-with-qemu.html)
 2. [Setting up QEMU-KVM for kernel development](https://www.collabora.com/news-and-blog/blog/2017/01/16/setting-up-qemu-kvm-for-kernel-development/)
+3. [Linux内核实验环境](http://tinylab.org/linux-lab/)
+
 
