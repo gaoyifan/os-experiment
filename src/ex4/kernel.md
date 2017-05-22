@@ -47,8 +47,14 @@ make -j `getconf _NPROCESSORS_ONLN`
 
 注3：编译过程将产生较多的临时文件。建议预留20G磁盘空间。
 
-## 安装
+## 安装（可选）
+
+如果希望将内核安装在本机中，可以运行：
 
 ```shell
-dpkg -i linux-4.4.25-exploit_4.4.25-poc-1.debian.tar.gz
+dpkg -i linux-image-4.4.25-exploit_4.4.25-exploit-1_amd64.deb
 ```
+
+另，`linux-image-4.4.25-exploit-dbg_4.4.25-exploit-1_amd64.deb`包含了内核的调试符号，用于调试跟踪。
+
+如果希望在QEMU中运行，则不需要将内核安装在本地。
