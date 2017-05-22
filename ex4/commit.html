@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>作业提交 - </title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="../">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+
+        <!-- MathJax -->
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = localStorage.getItem('theme');
+            if (theme == null) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = localStorage.getItem('sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li><a href="about.html"><strong>1.</strong> 关于本文档</a></li><li><a href="information.html"><strong>2.</strong> 课程信息</a></li><li><ul class="section"><li><a href="introduction.html"><strong>2.1.</strong> 实验介绍</a></li><li><a href="commit.html"><strong>2.2.</strong> 作业提交说明</a></li><li><a href="resources.html"><strong>2.3.</strong> 课程资料</a></li><li><a href="contact.html"><strong>2.4.</strong> 联系助教</a></li></ul></li><li><a href="ex1/index.html"><strong>3.</strong> 实验一</a></li><li><ul class="section"><li><a href="ex1/index.html"><strong>3.1.</strong> 实验内容</a></li><li><ul class="section"><li><a href="ex1/linux_install.html"><strong>3.1.1.</strong> 安装Linux操作系统</a></li><li><a href="ex1/linux_command.html"><strong>3.1.2.</strong> 熟悉Linux操作系统的常用命令</a></li><li><a href="ex1/bash.html"><strong>3.1.3.</strong> 学习使用bash</a></li><li><a href="ex1/git.html"><strong>3.1.4.</strong> 学习使用Git</a></li><li><a href="ex1/github.html"><strong>3.1.5.</strong> 熟悉GitHub的使用流程</a></li></ul></li><li><a href="ex1/commit.html"><strong>3.2.</strong> 作业提交</a></li><li><a href="ex1/score.html"><strong>3.3.</strong> 评分规则</a></li></ul></li><li><a href="ex2/index.html"><strong>4.</strong> 实验二</a></li><li><ul class="section"><li><a href="ex2/index.html"><strong>4.1.</strong> 实验内容</a></li><li><ul class="section"><li><a href="ex2/before-reading.html"><strong>4.1.1.</strong> 写在前面</a></li><li><a href="ex2/environment.html"><strong>4.1.2.</strong> 准备环境</a></li><li><a href="ex2/kernel.html"><strong>4.1.3.</strong> 构建内核</a></li><li><a href="ex2/busybox.html"><strong>4.1.4.</strong> 构建busybox</a></li><li><a href="ex2/rootfs.html"><strong>4.1.5.</strong> 完善根文件系统</a></li><li><a href="ex2/run.html"><strong>4.1.6.</strong> 运行操作系统</a></li><li><a href="ex2/after-reading.html"><strong>4.1.7.</strong> 写在后面</a></li></ul></li><li><a href="ex2/commit.html"><strong>4.2.</strong> 作业提交</a></li><li><a href="ex2/score.html"><strong>4.3.</strong> 评分规则</a></li></ul></li><li><a href="ex3/index.html"><strong>5.</strong> 实验三</a></li><li><ul class="section"><li><a href="ex3/index.html"><strong>5.1.</strong> 实验内容</a></li><li><a href="ex3/commit.html"><strong>5.2.</strong> 作业提交</a></li></ul></li><li><a href="ex4/index.html"><strong>6.</strong> 实验四</a></li><li><ul class="section"><li><a href="ex4/index.html"><strong>6.1.</strong> 实验内容</a></li><li><ul class="section"><li><a href="ex4/kernel.html"><strong>6.1.1.</strong> 编译目标内核</a></li><li><a href="ex4/qemu.html"><strong>6.1.2.</strong> 使用QEMU测试内核</a></li><li><a href="ex4/introduce.html"><strong>6.1.3.</strong> 漏洞介绍</a></li></ul></li><li><a href="ex4/commit.html" class="active"><strong>6.2.</strong> 作业提交</a></li></ul></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush"></i>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="ex4/commit.html#作业提交" id="作业提交"><h1>作业提交</h1></a>
+<p>请在提交前仔细阅读<a href="commit.html">作业提交说明</a></p>
+<pre><code>.
+├── README
+├── run.sh
+├── REPORT
+└── 其他文件(如：源代码)
+</code></pre>
+<p>仓库中应包含一个可执行文件<code>run.sh</code>。代码编译应在<code>run.sh</code>中完成，仓库中不应包含二进制可执行文件。</p>
+<p>如果选择撰写漏洞报告，请创建<code>REPORT</code>文件。（文本格式或MarkDown格式）</p>
+<p>如有其它需要说明的事项(如小组成员)，请记录在<code>README</code>文件中。（文本格式或MarkDown格式）</p>
+<p><strong>注意：</strong></p>
+<ol>
+<li>如果选择两人组队，仓库中应同时存在<code>run.sh</code>与<code>REPORT</code>文件。</li>
+<li>请在<code>run.sh</code>中使用相对路径引用git仓库中的文件。工作目录为仓库的根目录。</li>
+<li>如果你的程序可能导致内核崩溃（kernel panic），请在创建<code>/success</code>文件后，立刻执行<code>sync</code>命令，将修改写入本地磁盘。</li>
+<li>请勿提交Word文档。</li>
+</ol>
+<a class="header" href="ex4/commit.html#组队说明" id="组队说明"><h2>组队说明</h2></a>
+<p>可以两人组队完成，亦可一人一组，同组成员只需上交一份作业。多人组队时，需<strong>同时</strong>完成漏洞报告与攻击程序。</p>
+<p>注意：原则上队伍人数不允许超过2人。如有特殊原因，队伍人数超过2人，请在<strong>事前</strong>取得许可（<a href="contact.html">联系助教</a>）。</p>
+<a class="header" href="ex4/commit.html#测试环境" id="测试环境"><h2>测试环境</h2></a>
+<p>根文件系统：Ubuntu Core 16.04.2（已安装build-essential包）</p>
+<p>内核版本：4.4.25</p>
+<p>硬件环境：QEMU with KVM （宿主系统 Ubuntu Server 16.04.2）；2核CPU；1GB内存</p>
+<p>运行时限：20秒（从<code>run.sh</code>启动开始计时）</p>
+<a class="header" href="ex4/commit.html#关于评分" id="关于评分"><h2>关于评分</h2></a>
+<p>本次实验作业由人工批阅，机器辅助。</p>
+<p>攻击程序评分将考量：</p>
+<ul>
+<li>攻击思路的正确性</li>
+<li>实现的正确性</li>
+</ul>
+<p>漏洞报告评分将综合考量：</p>
+<ul>
+<li>漏洞原因分析的正确性</li>
+<li>漏洞修复方法分析的正确性</li>
+<li>漏洞报告的完整性</li>
+<li>漏洞危害分析的质量</li>
+</ul>
+<a class="header" href="ex4/commit.html#截止时间" id="截止时间"><h2>截止时间</h2></a>
+<p>6月16日 23:00</p>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a href="ex4/introduce.html" class="mobile-nav-chapters previous">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+
+            </div>
+
+            
+                <a href="ex4/introduce.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+    </body>
+</html>

@@ -1,0 +1,963 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>作业提交 - </title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+
+        <!-- MathJax -->
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = localStorage.getItem('theme');
+            if (theme == null) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = localStorage.getItem('sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li><a href="about.html"><strong>1.</strong> 关于本文档</a></li><li><a href="information.html"><strong>2.</strong> 课程信息</a></li><li><ul class="section"><li><a href="introduction.html"><strong>2.1.</strong> 实验介绍</a></li><li><a href="commit.html"><strong>2.2.</strong> 作业提交说明</a></li><li><a href="resources.html"><strong>2.3.</strong> 课程资料</a></li><li><a href="contact.html"><strong>2.4.</strong> 联系助教</a></li></ul></li><li><a href="ex1/index.html"><strong>3.</strong> 实验一</a></li><li><ul class="section"><li><a href="ex1/index.html"><strong>3.1.</strong> 实验内容</a></li><li><ul class="section"><li><a href="ex1/linux_install.html"><strong>3.1.1.</strong> 安装Linux操作系统</a></li><li><a href="ex1/linux_command.html"><strong>3.1.2.</strong> 熟悉Linux操作系统的常用命令</a></li><li><a href="ex1/bash.html"><strong>3.1.3.</strong> 学习使用bash</a></li><li><a href="ex1/git.html"><strong>3.1.4.</strong> 学习使用Git</a></li><li><a href="ex1/github.html"><strong>3.1.5.</strong> 熟悉GitHub的使用流程</a></li></ul></li><li><a href="ex1/commit.html"><strong>3.2.</strong> 作业提交</a></li><li><a href="ex1/score.html"><strong>3.3.</strong> 评分规则</a></li></ul></li><li><a href="ex2/index.html"><strong>4.</strong> 实验二</a></li><li><ul class="section"><li><a href="ex2/index.html"><strong>4.1.</strong> 实验内容</a></li><li><ul class="section"><li><a href="ex2/before-reading.html"><strong>4.1.1.</strong> 写在前面</a></li><li><a href="ex2/environment.html"><strong>4.1.2.</strong> 准备环境</a></li><li><a href="ex2/kernel.html"><strong>4.1.3.</strong> 构建内核</a></li><li><a href="ex2/busybox.html"><strong>4.1.4.</strong> 构建busybox</a></li><li><a href="ex2/rootfs.html"><strong>4.1.5.</strong> 完善根文件系统</a></li><li><a href="ex2/run.html"><strong>4.1.6.</strong> 运行操作系统</a></li><li><a href="ex2/after-reading.html"><strong>4.1.7.</strong> 写在后面</a></li></ul></li><li><a href="ex2/commit.html"><strong>4.2.</strong> 作业提交</a></li><li><a href="ex2/score.html"><strong>4.3.</strong> 评分规则</a></li></ul></li><li><a href="ex3/index.html"><strong>5.</strong> 实验三</a></li><li><ul class="section"><li><a href="ex3/index.html"><strong>5.1.</strong> 实验内容</a></li><li><a href="ex3/commit.html"><strong>5.2.</strong> 作业提交</a></li></ul></li><li><a href="ex4/index.html"><strong>6.</strong> 实验四</a></li><li><ul class="section"><li><a href="ex4/index.html"><strong>6.1.</strong> 实验内容</a></li><li><ul class="section"><li><a href="ex4/kernel.html"><strong>6.1.1.</strong> 编译目标内核</a></li><li><a href="ex4/qemu.html"><strong>6.1.2.</strong> 使用QEMU测试内核</a></li><li><a href="ex4/introduce.html"><strong>6.1.3.</strong> 漏洞介绍</a></li></ul></li><li><a href="ex4/commit.html"><strong>6.2.</strong> 作业提交</a></li></ul></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush"></i>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="print.html#operating-systems-h-experiment-guide" id="operating-systems-h-experiment-guide"><h1>Operating Systems (H) Experiment Guide</h1></a>
+<p><a href="https://travis-ci.org/gaoyifan/os-experiment"><img src="https://travis-ci.org/gaoyifan/os-experiment.svg?branch=master" alt="Build Status" /></a></p>
+<a class="header" href="print.html#修订日志" id="修订日志"><h2>修订日志</h2></a>
+<ul>
+<li>2017-3-2 新增课程介绍</li>
+<li>2017-3-7 新增实验一</li>
+<li>2017-3-14 实验一：新增评分规则</li>
+<li>2017-3-31 新增实验二</li>
+<li>2017-3-31 新增实验三</li>
+<li>2017-4-5 实验二：更新内存限制</li>
+<li>2017-4-11 新增助教联系信息</li>
+<li>2017-5-13 新增课件</li>
+<li>2017-5-15 新增实验四</li>
+<li>2017-5-17 新增书面作业</li>
+<li>2017-5-23 实验四：修正内核安装说明</li>
+<li>2017-5-23 实验四：增加组队说明</li>
+<li>2017-5-23 实验四：延长截止时间</li>
+<li>2017-5-23 实验四：补充参考资料</li>
+</ul>
+<a class="header" href="print.html#关于" id="关于"><h2>关于</h2></a>
+<p>本文档源代码托管于<a href="https://github.com/gaoyifan/os-experiment">GitHub</a>，由Travis CI自动生成，部署于GitHub Pages。</p>
+<p>除课件外，所有文档使用<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a>授权协议。</p>
+<a class="header" href="print.html#课程信息" id="课程信息"><h1>课程信息</h1></a>
+<a class="header" href="print.html#上课地点" id="上课地点"><h3>上课地点</h3></a>
+<ul>
+<li>3A404：3(6,7)</li>
+<li>3A404：5(3,4)</li>
+</ul>
+<a class="header" href="print.html#教师" id="教师"><h3>教师</h3></a>
+<ul>
+<li>邢凯</li>
+</ul>
+<a class="header" href="print.html#助教" id="助教"><h3>助教</h3></a>
+<ul>
+<li>杜文文：书面作业、日常（作业成绩查询）</li>
+<li>高一凡：实验作业、大作业</li>
+</ul>
+<a class="header" href="print.html#实验介绍" id="实验介绍"><h1>实验介绍</h1></a>
+<ul>
+<li>实验一：安装Linux操作系统，学习bash脚本、学习使用git，熟悉GitHub（第三周）</li>
+<li>实验二：学习编译Linux内核，裁剪Linux内核（第五周）</li>
+<li>实验三：进程间通讯（第七周）</li>
+<li>实验四：利用内核漏洞攻击Linux内核（第十一周）</li>
+</ul>
+<a class="header" href="print.html#作业提交说明" id="作业提交说明"><h1>作业提交说明</h1></a>
+<p>使用git管理实验作业的代码，每个实验一个git仓库，并将代码上传至<a href="https://github.com/">GitHub</a>。</p>
+<a class="header" href="print.html#步骤" id="步骤"><h2>步骤</h2></a>
+<ol>
+<li>在<a href="http://www.chaojibiaoge.com/index.php/U/url/e8ihwlk2">这里</a>提交你的GitHub ID（仅需一次）</li>
+<li>创建本地git仓库，按照实验要求完成题目，并创建commit。</li>
+<li><a href="https://github.com/new">创建</a>GitHub仓库，项目名称为<code>os-experiment-${n}</code>。如实验一：<code>os-experiment-1</code></li>
+<li>将本地代码上传至GitHub仓库的master分支</li>
+</ol>
+<a class="header" href="print.html#注意事项" id="注意事项"><h2>注意事项</h2></a>
+<ul>
+<li>GitHub项目须设置为公开访问</li>
+<li>master分支指针指向待提交的版本</li>
+<li>抓取时间为截止时间后的1小时。如4月15日23:00截止提交，则将在4月15日 23:00~24:00 从GitHub中下载大家的作业。请避免在这段时间修改master分支。</li>
+</ul>
+<a class="header" href="print.html#课程资料" id="课程资料"><h1>课程资料</h1></a>
+<a class="header" href="print.html#课件" id="课件"><h2>课件</h2></a>
+<ul>
+<li><a href="ppt/syllabus.ppt">教学大纲</a></li>
+<li>第一章：<a href="ppt/ch01_intro.ppt">第一部分</a>、<a href="ppt/ch01_intro_2.ppt">第二部分</a></li>
+<li><a href="ppt/ch02.ppt">第二章</a></li>
+<li><a href="ppt/ch03.ppt">第三章</a></li>
+<li><a href="ppt/deadlocks.ppt">死锁</a></li>
+<li><a href="ppt/devices.ppt">设备管理</a></li>
+<li><a href="ppt/disk.ppt">外部存储管理</a></li>
+<li><a href="ppt/file_system.ppt">文件管理</a></li>
+<li><a href="ppt/memory.ppt">内存管理</a></li>
+<li><a href="ppt/scheduling.ppt">进程调度</a></li>
+<li><a href="ppt/synchronization.ppt">同步</a></li>
+</ul>
+<a class="header" href="print.html#实验作业课件" id="实验作业课件"><h2>实验作业课件</h2></a>
+<ul>
+<li><a href="ppt/ex1.pdf">实验一</a></li>
+<li><a href="ppt/ex2.pdf">实验二</a></li>
+</ul>
+<a class="header" href="print.html#书面作业" id="书面作业"><h2>书面作业</h2></a>
+<ul>
+<li><a href="ppt/HW-partA.docx">Part A</a></li>
+<li><a href="ppt/HW-partB.docx">Part B</a></li>
+</ul>
+<a class="header" href="print.html#联系助教" id="联系助教"><h1>联系助教</h1></a>
+<p>如果在作业中遇到问题，或者对实验设计、实验手册有任何的改进意见，欢迎与助教取得联系：</p>
+<ul>
+<li>杜文文
+<ul>
+<li>Email: dwwo@mail.ustc.edu.cn</li>
+<li>负责范围：实验三；书面作业</li>
+</ul>
+</li>
+<li>高一凡
+<ul>
+<li>Email: os@yfgao.com</li>
+<li>Telegram: @gaoyifan</li>
+<li>负责范围：实验一、二、四；实验手册（本手册）</li>
+</ul>
+</li>
+</ul>
+<p>为了加快解决问题的速度，希望在邮件中一次性说明：</p>
+<ul>
+<li>我是谁</li>
+<li>我遇到的问题</li>
+<li>完整的错误信息（屏幕输出、日志文件等）</li>
+<li>如何复现这个问题（引起错误的操作过程）</li>
+<li>我的环境（操作系统版本、内核版本、编译器版本等）</li>
+</ul>
+<p>另外，如果事后问题得到解决，希望能回信反馈一下。</p>
+<p>如果对邮件私密性有要求，可以借助PGP向我发送加密邮件。</p>
+<p>PGP Key ID: 99E74594F5D8CAAD</p>
+<a class="header" href="print.html#扩展阅读" id="扩展阅读"><h2>扩展阅读</h2></a>
+<p><a href="https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/master/README-zh_CN.md">提问的智慧</a></p>
+<p><a href="https://wenku.baidu.com/view/14643a1da300a6c30c229f08.html">GnuPG与邮件加密</a> (<a href="http://exaos.github.io/attic/softwares/mynote-gpgmail.html">出处</a>)</p>
+<a class="header" href="print.html#实验一" id="实验一"><h1>实验一</h1></a>
+<ol>
+<li>安装Linux操作系统</li>
+<li>熟悉Linux操作系统的常用命令</li>
+<li>学习使用bash</li>
+<li>学习使用git</li>
+<li>熟悉GitHub的使用流程</li>
+</ol>
+<a class="header" href="print.html#实验一-1" id="实验一-1"><h1>实验一</h1></a>
+<ol>
+<li>安装Linux操作系统</li>
+<li>熟悉Linux操作系统的常用命令</li>
+<li>学习使用bash</li>
+<li>学习使用git</li>
+<li>熟悉GitHub的使用流程</li>
+</ol>
+<a class="header" href="print.html#安装linux操作系统" id="安装linux操作系统"><h1>安装Linux操作系统</h1></a>
+<a class="header" href="print.html#发行版选择" id="发行版选择"><h2>发行版选择</h2></a>
+<p>Linux发行版数量众多（见参考资料1），其中部分较为主流的Linux发行版有：</p>
+<ul>
+<li><a href="https://www.debian.org/releases/stable/installmanual">Debian</a></li>
+<li><a href="https://www.ubuntu.com/download/desktop/install-ubuntu-desktop">Ubuntu</a></li>
+<li><a href="https://docs.fedoraproject.org/en-US/Fedora/25/html/Installation_Guide/index.html">Fedora</a></li>
+<li><a href="https://wiki.archlinux.org/index.php/Installation_guide_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">Arch Linux</a></li>
+<li><a href="https://elementary.io/zh_CN/docs/installation#installation">Elementary OS</a></li>
+<li><a href="https://wiki.deepin.org/?title=%E5%8E%9F%E7%94%9F%E5%AE%89%E8%A3%85">Deepin</a></li>
+</ul>
+<p>不同的发行版有各自的特点，设计哲学也不尽相同，大家可以选择任意一款自己喜欢的Linux发行版。如果是初次接触Linux，可以选择Ubuntu，安装相对容易。</p>
+<a class="header" href="print.html#安装方式" id="安装方式"><h2>安装方式</h2></a>
+<p>常见的两种安装方式：</p>
+<ul>
+<li>直接安装在裸金属(bare metal)中</li>
+<li>安装在虚拟机中</li>
+</ul>
+<p>如果打算将Linux直接安装在裸金属中，且与windows/macOS共存，请自行查找相关资料。这种方案操作相对繁琐，但系统性能和使用体验相对较好。</p>
+<p>下面列出了一些常用的虚拟化软件，请大家根据自身情况选择。</p>
+<ul>
+<li><a href="https://www.virtualbox.org">Virtual Box</a>（免费软件，GPLv2协议，支持macOS, Windows, Linux操作系统）</li>
+<li><a href="http://www.parallels.com/products/desktop/">Parallels Desktop</a> （商业软件，支持macOS）</li>
+<li><a href="http://www.vmware.com/products/fusion.html">VMware Fusion</a> （商业软件，支持macOS）</li>
+<li><a href="http://www.vmware.com/products/workstation.html">VMware WorkStation</a> （商业软件，支持Windows, Linux）</li>
+</ul>
+<a class="header" href="print.html#桌面环境" id="桌面环境"><h2>桌面环境</h2></a>
+<p>常见的桌面环境：</p>
+<ul>
+<li>GNOME (Debian, Fedora默认桌面环境)</li>
+<li>KDE</li>
+<li>Unity (Ubuntu默认桌面环境)</li>
+<li>XFACE</li>
+</ul>
+<p>虽然可以在纯命令行(command line)模式下使用Linux，但由于后续实验需要使用浏览器执行部分操作，因此建议大家安装至少一种桌面环境。</p>
+<p>许多面向桌面用户的发行版都会默认安装桌面环境，如安装Ubuntu Desktop时，安装程序会默认安装Unity桌面环境。一般而言，这些默认的桌面环境就能够满足我们的需求。</p>
+<a class="header" href="print.html#参考资料" id="参考资料"><h2>参考资料</h2></a>
+<ol>
+<li><a href="https://upload.wikimedia.org/wikipedia/commons/1/1b/Linux_Distribution_Timeline.svg">现存的Linux发行版</a></li>
+<li><a href="https://ftp.ustclug.org/course/">Linux基本概念和安装指南（Linux入门公开课）</a></li>
+</ol>
+<a class="header" href="print.html#熟悉linux操作系统的常用命令" id="熟悉linux操作系统的常用命令"><h1>熟悉Linux操作系统的常用命令</h1></a>
+<p>这一部分主要目的是让大家了解一些常用的Linux命令，减少后续实验遇到的阻力。</p>
+<p>Linux命令行是Linux的重要组成部分。它提供了一种命令行界面 (<em>command-line interface</em>, abbr. <em>CLI</em>) 允许我们与操作系统、应用程序进行交互。相比于图形用户界面(<em>Graphical User Interface</em>，abbr. <em>GUI</em>)，CLI更容易使用编程的方法来调用，为程序化控制打下基础。</p>
+<a class="header" href="print.html#部分常用命令" id="部分常用命令"><h2>部分常用命令</h2></a>
+<ul>
+<li>文件/目录相关：ls, cd, pwd, mv, cp, rm, mkdir, cat, touch, find, tar</li>
+<li>文本处理：echo, grep, sed, wc, tee, sort, vi</li>
+<li>操作系统相关：shutdown, reboot, w, ps, kill, df</li>
+</ul>
+<p>建议大家熟悉以上命令的基本用法，亲自尝试上述命令。具体用法可以参考Linux命令大全（见参考资料1）。</p>
+<a class="header" href="print.html#参考资料-1" id="参考资料-1"><h2>参考资料</h2></a>
+<ol>
+<li><a href="http://man.linuxde.net">Linux命令大全</a></li>
+<li><a href="https://ftp.ustclug.org/course/">图形界面 VS 命令行界面（Linux入门公开课）</a></li>
+</ol>
+<a class="header" href="print.html#学习使用bash" id="学习使用bash"><h1>学习使用bash</h1></a>
+<p>请大家借助文末参考资料，学习编写bash脚本。</p>
+<a class="header" href="print.html#编程作业" id="编程作业"><h2>编程作业</h2></a>
+<p>本次实验需要大家提交一段代码（文件名<code>hello_linux.sh</code>），功能如下：</p>
+<ol>
+<li>向标准输出打印一行文本<code>Hello Linux</code></li>
+<li>将标准输入中的文本，保存至一个文本文件（文件名<code>output.txt</code>），存放在当前工作目录下。</li>
+</ol>
+<a class="header" href="print.html#参考代码" id="参考代码"><h3>参考代码</h3></a>
+<p>参考代码1：</p>
+<pre><code class="language-bash">#!/bin/bash
+echo &quot;Hello Linux&quot;
+echo -n &gt; output.txt #清空output.txt
+while read line
+do
+    echo $line &gt;&gt; output.txt
+done
+</code></pre>
+<p>参考代码2：</p>
+<pre><code class="language-sh">#!/bin/bash
+echo &quot;Hello Linux&quot;
+cat &gt; output.txt
+</code></pre>
+<p>请大家思考代码2的工作原理（了解<a href="https://linux.die.net/man/1/cat">cat命令</a>）。</p>
+<a class="header" href="print.html#如何测试你的脚本" id="如何测试你的脚本"><h3>如何测试你的脚本？</h3></a>
+<p>运行以下命令：</p>
+<pre><code>echo -e &quot;When the world turns its back on you, you turn your back on the world.\nTimon(The Lion King)&quot; | ./hello_linux.sh
+</code></pre>
+<p>运行后，如果代码正确，则屏幕显示：</p>
+<pre><code>Hello Linux
+</code></pre>
+<p>且output.txt文件内容为：</p>
+<pre><code>When the world turns its back on you, you turn your back on the world.
+Timon(The Lion King)
+</code></pre>
+<p><em>注：执行<code>cat output.txt</code>查看文件内容</em></p>
+<a class="header" href="print.html#参考资料-2" id="参考资料-2"><h2>参考资料</h2></a>
+<ol>
+<li><a href="http://www.runoob.com/linux/linux-shell.html">Shell 教程</a></li>
+<li><a href="http://cn.linux.vbird.org/linux_basic/0320bash.php">学习bash shell</a></li>
+<li><a href="https://ftp.ustclug.org/course/">bash基础（Linux入门公开课）</a></li>
+</ol>
+<a class="header" href="print.html#学习使用git" id="学习使用git"><h1>学习使用Git</h1></a>
+<p>请大家借助文末参考资料，学习使用git管理源代码。</p>
+<p>重点关注下列子命令：</p>
+<ul>
+<li>init</li>
+<li>add</li>
+<li>commit</li>
+<li>log</li>
+<li>remote</li>
+<li>push</li>
+<li>pull</li>
+<li>clone</li>
+<li>branch</li>
+<li>checkout</li>
+<li>merge</li>
+</ul>
+<a class="header" href="print.html#参考资料-3" id="参考资料-3"><h2>参考资料</h2></a>
+<ol>
+<li><a href="https://git-scm.com/book/zh/v2">Pro Git 第二版</a></li>
+<li><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">Git教程</a></li>
+<li><a href="http://backlogtool.com/git-guide/cn/">猴子都能懂的GIT教程</a></li>
+</ol>
+<a class="header" href="print.html#熟悉github的使用流程" id="熟悉github的使用流程"><h1>熟悉GitHub的使用流程</h1></a>
+<p>注册一个GitHub账号，了解GitHub的功能与用法。</p>
+<a class="header" href="print.html#参考资料-4" id="参考资料-4"><h2>参考资料</h2></a>
+<ol>
+<li><a href="https://guides.github.com">GitHub Guides</a></li>
+</ol>
+<a class="header" href="print.html#作业提交" id="作业提交"><h1>作业提交</h1></a>
+<p>请仔细阅读<a href="commit.html">作业提交说明</a></p>
+<a class="header" href="print.html#目录格式" id="目录格式"><h2>目录格式</h2></a>
+<pre><code>.
+└── hello_linux.sh
+
+0 directories, 1 file
+</code></pre>
+<p>Git仓库中包含一个可执行文件<code>hello_linux.sh</code>，其他文件将被测试程序忽略。</p>
+<a class="header" href="print.html#截止时间" id="截止时间"><h2>截止时间</h2></a>
+<p>2017年4月15日 23:00</p>
+<a class="header" href="print.html#评分规则" id="评分规则"><h1>评分规则</h1></a>
+<ul>
+<li>存在名称为<code>os-experiment-1</code>的GitHub仓库（+1分）</li>
+<li>仓库中存在<code>hello_linux.sh</code>文件（+1分）</li>
+<li><code>hello_linux.sh</code>是可执行文件（+1分）</li>
+<li><code>hello_linux.sh</code>文件使用了Linux/UNIX风格的换行符（+1分）</li>
+<li><code>hello_linux.sh</code>脚本执行结果正确（+1分）</li>
+<li>提交时间晚于截止日期（-2分）</li>
+</ul>
+<p>最低分0分，最高分5分。若计分结果低于0分，则得分为0分。</p>
+<a class="header" href="print.html#附评测环境" id="附评测环境"><h2>附：评测环境</h2></a>
+<p>根文件系统：<a href="https://partner-images.canonical.com/core/xenial/current/ubuntu-xenial-core-cloudimg-amd64-root.tar.gz">Ubuntu Core 16.04</a></p>
+<p>运行时间：&lt;1秒</p>
+<p>内存：1GB</p>
+<p>CPU： x86_64，单核，2.60GHz</p>
+<a class="header" href="print.html#实验二" id="实验二"><h1>实验二</h1></a>
+<p>本实验旨在从源代码构建出一个精简的Linux操作系统。</p>
+<p>为了降低实验难度，文档略去了grub和libc的构建过程。因此最终构建的成果无法直接运行在裸金属上，需要借助QEMU模拟器来运行。</p>
+<ol>
+<li>准备编译环境</li>
+<li>构建内核</li>
+<li>构建busybox</li>
+<li>完善根文件系统</li>
+<li>运行操作系统</li>
+</ol>
+<a class="header" href="print.html#实验二-1" id="实验二-1"><h1>实验二</h1></a>
+<p>本实验旨在从源代码构建出一个精简的Linux操作系统。</p>
+<p>为了降低实验难度，文档略去了grub和libc的构建过程。因此最终构建的成果无法直接运行在裸金属上，需要借助QEMU模拟器来运行。</p>
+<ol>
+<li>准备编译环境</li>
+<li>构建内核</li>
+<li>构建busybox</li>
+<li>完善根文件系统</li>
+<li>运行操作系统</li>
+</ol>
+<a class="header" href="print.html#写在前面" id="写在前面"><h1>写在前面</h1></a>
+<p>本小节主要针对文档进行一些说明，方便大家理解。</p>
+<a class="header" href="print.html#提示符" id="提示符"><h2>提示符</h2></a>
+<pre><code>$ echo &quot;Hello World!&quot; &gt; some-file.txt
+$ cat some-file.txt
+# chown root:root some-file.txt
+</code></pre>
+<p>对于类似上文的命令块，每行为一条命令，行首的提示符<code>$</code>表示该条命令可以以普通用户权限执行，提示符<code>#</code>表示该条命令需要以管理员权限（即<code>root</code>用户）执行。</p>
+<p>P.S.执行命令时不需要输入提示符</p>
+<a class="header" href="print.html#whoami" id="whoami"><h2>whoami</h2></a>
+<p>以下命令可以获得当前用户：</p>
+<pre><code>$ whoami
+</code></pre>
+<p>屏幕将打印当前登录的用户的用户名。</p>
+<a class="header" href="print.html#sudo" id="sudo"><h2>sudo</h2></a>
+<p>如果需要临时提升为管理员权限，可以使用sudo命令。如需要以管理员权限执行：</p>
+<pre><code># touch something
+</code></pre>
+<p>那么，则可以临时提权为管理员：</p>
+<pre><code>$ sudo touch something
+</code></pre>
+<p>在大多数情况下，以上两条命令的效果是等价的。</p>
+<p>如果需要执行大量管理员权限的命令，可以打开一个root shell：</p>
+<pre><code>$ sudo -s
+</code></pre>
+<p>该命令将返回一个root终端，随后执行的命令都将应用管理员权限。执行<code>exit</code>可以退出root终端。</p>
+<a class="header" href="print.html#文本编辑器" id="文本编辑器"><h2>文本编辑器</h2></a>
+<p>本实验需要在命令行模式下编辑少量文本，因此需要大家掌握至少一种文本编辑器的用法。<code>nano</code>比较适合初学者，<code>vim</code>和<code>emacs</code>十分强大，但学习起来有一定难度，请大家根据自身情况选择。参考资料见文末。</p>
+<a class="header" href="print.html#参考资料-5" id="参考资料-5"><h2>参考资料</h2></a>
+<ol>
+<li><a href="http://man.linuxde.net/nano">nano命令</a></li>
+<li><a href="http://coolshell.cn/articles/5426.html">简明 VIM 练级攻略</a></li>
+</ol>
+<a class="header" href="print.html#准备环境" id="准备环境"><h1>准备环境</h1></a>
+<p>为了避免环境不同所导致的编译错误，建议大家遵循本节内容准备一个用于编译目标操作系统的编译环境。</p>
+<p>如果使用的操作系统是ubuntu 16.04，则可以直接跳至<a href="print.html#%E6%9B%B4%E6%96%B0%E4%BB%93%E5%BA%93%E7%B4%A2%E5%BC%95">更新仓库索引</a>部分。</p>
+<a class="header" href="print.html#获取基础镜像" id="获取基础镜像"><h2>获取基础镜像</h2></a>
+<a class="header" href="print.html#下载镜像压缩包" id="下载镜像压缩包"><h3>下载镜像压缩包</h3></a>
+<p>从Ubuntu官网下载<a href="http://cdimage.ubuntu.com/ubuntu-base/releases/16.04/release/ubuntu-base-16.04.2-base-amd64.tar.gz">Ubuntu 16.04.2 Base Image(AMD64)</a>：</p>
+<pre><code># wget -O /opt/ubuntu-base-16.04.2-base-amd64.tar.gz http://cdimage.ubuntu.com/ubuntu-base/releases/16.04/release/ubuntu-base-16.04.2-base-amd64.tar.gz
+</code></pre>
+<p>如果下载速度较慢，亦可从科大开源软件镜像站下载：</p>
+<pre><code># wget -O /opt/ubuntu-base-16.04.2-base-amd64.tar.gz http://mirrors.ustc.edu.cn/ubuntu-cdimage/ubuntu-base/releases/16.04/release/ubuntu-base-16.04.2-base-amd64.tar.gz
+</code></pre>
+<a class="header" href="print.html#解压" id="解压"><h3>解压</h3></a>
+<p>解压镜像到<code>/opt/ubuntu</code></p>
+<pre><code># mkdir -pv /opt/ubuntu
+# cd /opt/ubuntu
+# tar xpzf ../ubuntu-base-16.04.2-base-amd64.tar.gz
+</code></pre>
+<a class="header" href="print.html#切换根目录前的准备" id="切换根目录前的准备"><h2>切换根目录前的准备</h2></a>
+<a class="header" href="print.html#配置dns" id="配置dns"><h3>配置DNS</h3></a>
+<p>将本机的DNS配置复制到新的rootfs中：</p>
+<pre><code># cp -v /etc/resolv.conf /opt/ubuntu/etc/resolv.conf
+</code></pre>
+<a class="header" href="print.html#修改软件仓库地址可选" id="修改软件仓库地址可选"><h2>修改软件仓库地址（可选）</h2></a>
+<p>为了加快下载速度，可以将官方源地址修改为<a href="https://mirrors.ustc.edu.cn">科大开源镜像站</a>提供的镜像地址：</p>
+<pre><code># wget -O /opt/ubuntu/etc/apt/sources.list https://mirrors.ustc.edu.cn/repogen/conf/ubuntu-http-4-xenial
+</code></pre>
+<a class="header" href="print.html#安装编译环境" id="安装编译环境"><h2>安装编译环境</h2></a>
+<a class="header" href="print.html#改变根目录" id="改变根目录"><h3>改变根目录</h3></a>
+<p>下面的命令将改变根目录<code>/</code>所代表的实际指向，我们需要将其修改为刚才解压得到的ubuntu镜像：</p>
+<pre><code># chroot /opt/ubuntu /bin/bash
+</code></pre>
+<p>第二个参数<code>/bin/bash</code>表示在新的根目录环境中执行的命令。在这里，我们启动了一个bash shell。</p>
+<p>注：执行<code>exit</code>可以退出chroot环境。</p>
+<p><strong>请特别注意：下面的命令都将在新的根目录中执行！</strong></p>
+<a class="header" href="print.html#更新仓库索引" id="更新仓库索引"><h3>更新仓库索引</h3></a>
+<pre><code># apt update
+</code></pre>
+<a class="header" href="print.html#安装软件包" id="安装软件包"><h3>安装软件包</h3></a>
+<p>安装编译器及其他一些工具</p>
+<pre><code># apt install -y build-essential libncurses5-dev libgimp2.0-dev bc curl cpio
+</code></pre>
+<p>安装文本编辑器</p>
+<pre><code># apt install -y nano
+</code></pre>
+<p>P.S. 如果需要使用vim（emacs类似），请将命令修改为<code>apt install -y vim</code></p>
+<a class="header" href="print.html#构建内核" id="构建内核"><h1>构建内核</h1></a>
+<p>本小节主要阐述如何从源代码构建一个最小化的Linux内核，了解必要的内核编译选项。</p>
+<a class="header" href="print.html#获取内核源码" id="获取内核源码"><h2>获取内核源码</h2></a>
+<p>下载Linux内核源代码：</p>
+<pre><code># cd /usr/local/src
+# curl https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.10.7.tar.xz | tar xJf -
+# cd /usr/local/src/linux-4.10.7
+</code></pre>
+<p>P.S. <code>curl</code>是一个多协议的网络通讯工具。在上一条命令中，<code>curl</code>从互联网获取内核源码的压缩包，并借助管道(pipe)将数据提供给文件存档工具<code>tar</code>，<code>tar</code>将<code>curl</code>获取的数据解压到当前目录中。 参数中<code>x</code>表示解压，<code>J</code>表示解压xz格式的数据，<code>f</code>表示指定输入文件，<code>-</code>表示使用标准输入作为输入文件。</p>
+<p>本文撰写时，Linux内核最新的稳定版本为4.10.7，为了避免内核版本不同带来的配置差异，建议大家统一使用<code>4.10.x</code>系列的内核。</p>
+<a class="header" href="print.html#编译" id="编译"><h2>编译</h2></a>
+<a class="header" href="print.html#生成初始配置" id="生成初始配置"><h3>生成初始配置</h3></a>
+<p>生成一个空的配置文件：</p>
+<pre><code># make allnoconfig
+</code></pre>
+<a class="header" href="print.html#修改内核配置" id="修改内核配置"><h3>修改内核配置</h3></a>
+<p>启动配置（编辑）器：</p>
+<pre><code># make menuconfig
+</code></pre>
+<p><strong>说明：方向键可以移动光标，空格键用于选中（或取消选中）当前选项，ESC键返回上层菜单（或退出），按下高亮的字母可以快速跳转至对应选项。</strong></p>
+<p>打开64位内核支持：</p>
+<pre><code>[*] 64-bit kernel
+</code></pre>
+<p>为了让内核能够打印调试信息，我们需要打开kernel print function的支持：</p>
+<pre><code>-&gt; General setup
+  -&gt; Configure standard kernel features
+[*] Enable support for printk
+</code></pre>
+<p>打开内存文件系统的支持：</p>
+<pre><code>-&gt; General setup
+[*] Initial RAM filesystem and RAM disk (initramfs/initrd) support
+</code></pre>
+<p>打开ELF可执行文件和<code>#!</code>类脚本文件的支持：</p>
+<pre><code>-&gt; Executable file formats / Emulations
+[*] Kernel support for ELF binaries
+[*] Kernel support for scripts starting with #!
+</code></pre>
+<p>打开TTY驱动的支持：</p>
+<pre><code>-&gt; Device Drivers
+  -&gt; Character devices
+[*] Enable TTY
+</code></pre>
+<p>为了能让QEMU能正常显示终端，需要打开UART串口的支持：</p>
+<pre><code>-&gt; Device Drivers
+  -&gt; Character devices
+    -&gt; Serial drivers
+[*] 8250/16550 and compatible serial support
+[*]   Console on 8250/16550 and compatible serial port
+</code></pre>
+<p>为了让标准UNIX工具能够正常工作（如获取启动时间），需要打开<code>/proc</code>和<code>sysfs</code>文件系统的支持：</p>
+<pre><code>-&gt; File systems
+  -&gt; Pseudo filesystems
+[*] /proc file system support
+[*] sysfs file system support
+</code></pre>
+<p>全部设置完成后，请保存修改后退出配置编辑器。</p>
+<a class="header" href="print.html#编译-1" id="编译-1"><h3>编译</h3></a>
+<p>开始编译内核：</p>
+<pre><code># make
+</code></pre>
+<p>将编译的结果复制到<code>/usr/local/mini-os</code>目录备用：</p>
+<pre><code># mkdir -pv /usr/local/mini-os
+# cp arch/x86_64/boot/bzImage /usr/local/mini-os/bzImage
+</code></pre>
+<a class="header" href="print.html#构建busybox" id="构建busybox"><h1>构建busybox</h1></a>
+<p>任何Linux发行版都需要一些基础的命令以便让系统正确运行，如（<code>mount</code>, <code>ls</code>, <code>pwd</code>, <code>ifconfig</code>, <code>cd</code>, <code>mkdir</code>, <code>touch</code>, <code>rm</code>, <code>vi</code> 等等）。我们的构建的操作系统也需要这些工具。一般而言有两种方法：</p>
+<ul>
+<li>单独下载每个工具的源代码，编译安装</li>
+<li>使用busybox</li>
+</ul>
+<p>busybox能够通过一个单独的可执行文件提供多种UNIX工具的的简化版本。虽然busybox提供的工具的选项并不全面，但亦足以胜任大部分的任务。busybox尺寸较小，编译较为简单，在此我们选择第二种方式。</p>
+<a class="header" href="print.html#获取源代码" id="获取源代码"><h3>获取源代码</h3></a>
+<pre><code># cd /usr/local/src
+# curl https://busybox.net/downloads/busybox-1.26.2.tar.bz2 | tar xjf -
+# cd busybox-1.26.2
+</code></pre>
+<p>P.S. 截止撰文时，busybox最新稳定版本为1.26.2</p>
+<a class="header" href="print.html#配置编译选项" id="配置编译选项"><h3>配置编译选项</h3></a>
+<p>生成默认配置：</p>
+<pre><code># make defconfig
+</code></pre>
+<p>启动配置编辑器：</p>
+<pre><code># make menuconfig
+</code></pre>
+<p>由于我们没有编译libc，因此需要直接编译出静态的可执行文件（即：不依赖任何动态链接库）</p>
+<pre><code>-&gt; Busybox Settings
+  -&gt; Build Options
+[*] Build BusyBox as a static binary (no shared libs)
+</code></pre>
+<a class="header" href="print.html#编译-2" id="编译-2"><h3>编译</h3></a>
+<pre><code># make
+</code></pre>
+<a class="header" href="print.html#安装" id="安装"><h3>安装</h3></a>
+<pre><code># mkdir -pv /usr/local/mini-os/rootfs
+# make CONFIG_PREFIX=/usr/local/mini-os/rootfs install
+</code></pre>
+<a class="header" href="print.html#完善根文件系统" id="完善根文件系统"><h1>完善根文件系统</h1></a>
+<a class="header" href="print.html#创建目录" id="创建目录"><h3>创建目录</h3></a>
+<p>内核需要挂载一些虚拟文件系统，用于与用户态程序交换信息，这些文件系统仅在运行时会被挂载，并不占用磁盘空间，我们需要在文件系统中创建这些目录：</p>
+<pre><code># mkdir -pv /usr/local/mini-os/rootfs/{dev,proc,sys,run}
+</code></pre>
+<a class="header" href="print.html#创建初始设备节点" id="创建初始设备节点"><h3>创建初始设备节点</h3></a>
+<p>系统初始化依赖于几个设备节点，我们需要逐个创建它们：</p>
+<pre><code># cd /usr/local/mini-os/rootfs
+# mknod -m 622 ./dev/console c 5 1
+# mknod -m 666 ./dev/null c 1 3
+# mknod -m 666 ./dev/zero c 1 5
+# mknod -m 666 ./dev/ptmx c 5 2
+# mknod -m 666 ./dev/tty c 5 0
+# mknod -m 666 ./dev/ttyS0 c 4 64
+</code></pre>
+<a class="header" href="print.html#创建init程序" id="创建init程序"><h3>创建init程序</h3></a>
+<p>为了降低复杂度，我们自定义一个简单的sh脚本作为初始进程。创建并编辑<code>/usr/local/mini-os/rootfs/init</code>文件，写入以下内容：</p>
+<pre><code>#!/bin/sh
+mount -t proc none /proc
+mount -t sysfs none /sys
+echo -e &quot;\nBoot took $(cut -d' ' -f1 /proc/uptime) seconds.\n&quot;
+exec /bin/sh
+</code></pre>
+<p>赋予可执行权限：</p>
+<pre><code># chmod +x init
+</code></pre>
+<a class="header" href="print.html#打包文件系统" id="打包文件系统"><h3>打包文件系统</h3></a>
+<p>为了让QEMU读取文件系统，我们需要对文件系统进行打包：</p>
+<pre><code>cd /usr/local/mini-os/rootfs
+find . | cpio -oHnewc | gzip &gt; ../initramfs.gz
+</code></pre>
+<a class="header" href="print.html#运行操作系统" id="运行操作系统"><h1>运行操作系统</h1></a>
+<p>我们刚才编译的操作系统并不包含引导器，因此无法直接运行在裸金属中。我们这里选择QEMU来运行这个操作系统。</p>
+<a class="header" href="print.html#安装qemu" id="安装qemu"><h3>安装QEMU</h3></a>
+<pre><code># apt install -y qemu-system-x86
+</code></pre>
+<a class="header" href="print.html#运行操作系统-1" id="运行操作系统-1"><h3>运行操作系统</h3></a>
+<pre><code># cd /usr/local/mini-os
+# qemu-system-x86_64 -kernel bzImage -initrd initramfs.gz -nographic -append &quot;console=ttyS0&quot;
+</code></pre>
+<p>如果终端输出类似：</p>
+<pre><code>Boot took 0.45 seconds.
+/ #
+</code></pre>
+<p>则表明操作系统已经成功启动。</p>
+<p>注：在宿主机上执行<code>killall qemu-system-x86_64</code>可以关闭QEMU模拟器。</p>
+<p>到此，实验内容全部结束。</p>
+<a class="header" href="print.html#写在后面" id="写在后面"><h1>写在后面</h1></a>
+<p>如果希望这个操作系统运行在裸金属中，需要开启额外的内核编译选项（主要是驱动程序），以及安装引导器（如GRUB）。如果大家对此感兴趣，可以参考Linux From Scratch（见参考资料），也可以与助教交流讨论。</p>
+<p>由于本实验主旨是为了精简Linux操作系统内核，因此我们没有创建一个完整的根文件系统。如果要让操作系统正常运行，还需要创建许多配置文件，如<code>/etc/inittab</code>, <code>/etc/passwd</code>, <code>/etc/group</code>, …  具体可以参考Linux From Scratch。</p>
+<a class="header" href="print.html#参考资料-6" id="参考资料-6"><h2>参考资料</h2></a>
+<ol>
+<li><a href="http://www.linuxfromscratch.org/lfs/view/stable/">Linux From Scratch</a></li>
+</ol>
+<a class="header" href="print.html#作业提交-1" id="作业提交-1"><h1>作业提交</h1></a>
+<p>请在提交前仔细阅读<a href="commit.html">作业提交说明</a></p>
+<a class="header" href="print.html#目录格式-1" id="目录格式-1"><h2>目录格式</h2></a>
+<pre><code>.
+├── bzImage
+└── initramfs.gz
+
+0 directories, 2 files
+</code></pre>
+<p>Git仓库中包含一个压缩后的二进制内核镜像<code>bzImage</code>和一个打包成ramfs格式的根文件系统<code>initramfs.gz</code>，其他文件将被评测程序忽略。</p>
+<a class="header" href="print.html#截止时间-1" id="截止时间-1"><h2>截止时间</h2></a>
+<p>为了减少由于格式等原因导致的分数扣减，我们将进行两次评测，取两次评测的较高分作为实验二的最终成绩。</p>
+<ul>
+<li>第一次评测
+<ul>
+<li>从GitHub抓取作业：2017年4月15日 23:00</li>
+<li>公布第一次成绩：2017年4月16日（预计）</li>
+</ul>
+</li>
+<li>第二次评测
+<ul>
+<li>从GitHub抓取作业：2017年4月22日 23:00</li>
+<li>公布第二次(最终)成绩：2017年4月23日（预计）</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#评分规则-1" id="评分规则-1"><h1>评分规则</h1></a>
+<ul>
+<li>内核成功引导<code>init</code>进程 并正确打印启动时间（+3分），且：
+<ul>
+<li>压缩后的内核<code>bzImage</code>镜像小于2MB（+1分）</li>
+<li>根文件系统小于4MB（+1分）</li>
+</ul>
+</li>
+<li>提交时间晚于截止日期（-2分）</li>
+<li>抄袭（-5分）</li>
+</ul>
+<p>最低分0分，最高分5分。若计分结果低于0分，则得分为0分。</p>
+<a class="header" href="print.html#附抄袭定义与处罚" id="附抄袭定义与处罚"><h2>附：抄袭定义与处罚</h2></a>
+<p>以下行为将被判抄袭：</p>
+<ol>
+<li>直接复制他人的git仓库</li>
+<li>提交非本人编译的二进制内核文件</li>
+<li>提交非本人生成的根文件系统</li>
+<li>提交的根文件系统中包含非本人编译的二进制程序</li>
+</ol>
+<p>程序检测到抄袭的，将进行人工复核。确认抄袭的，本次作业记0分，并上报任课教师。</p>
+<a class="header" href="print.html#附评测环境-1" id="附评测环境-1"><h2>附：评测环境</h2></a>
+<p>CPU： x86_64，单核，2.60GHz</p>
+<p>内存：32MB</p>
+<p>运行时间：小于2秒</p>
+<a class="header" href="print.html#实验三" id="实验三"><h1>实验三</h1></a>
+<p>本实验为开放性编程实验，不限制程序功能。需要使用C语言实现三种不同的进程间通讯(Inter-Process Communication)方法。</p>
+<p>常见的进程间通讯方式有：</p>
+<ul>
+<li>消息队列（Message queues）</li>
+<li>信号量（Semaphores）</li>
+<li>共享内存（Shared memory）</li>
+<li>套接字（Sockets）</li>
+<li>内存映射（Mapped Memory）</li>
+<li>命名管道（FIFOS）</li>
+<li>管道（Pipe）</li>
+</ul>
+<a class="header" href="print.html#实验要求" id="实验要求"><h2>实验要求</h2></a>
+<ul>
+<li>使用<strong>C语言</strong>编写3个程序</li>
+<li>每个程序使用一种不同的进程间通讯方法</li>
+<li>每个程序可以包含一个或多个可执行文件（即：可以是同一个程序的不同进程间的通讯，也可以是不同程序的进程间的通讯）</li>
+<li>每个程序源代码<strong>不超过</strong>500行</li>
+<li>程序能够在Linux操作系统中编译、执行</li>
+<li>撰写一份说明文档描述你的作业，至少包含：
+<ul>
+<li>每个程序的功能描述</li>
+<li>每个程序源代码的存放位置</li>
+<li>如何编译、运行</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#编译环境" id="编译环境"><h2>编译环境</h2></a>
+<p>Ubuntu 16.04.2 core，包含以下包：</p>
+<ul>
+<li>build-essential（包含了gcc, make等工具）</li>
+<li>cmake</li>
+<li>autoconf</li>
+<li>automake</li>
+</ul>
+<p>如果编译需要其他工具（包），请在说明文件中指出。</p>
+<a class="header" href="print.html#参考资料-7" id="参考资料-7"><h2>参考资料</h2></a>
+<ol>
+<li><a href="http://advancedlinuxprogramming.com/alp-folder/alp-ch05-ipc.pdf">Advanced Linux Programming</a></li>
+<li><a href="http://tldp.org/LDP/lpg/node7.html">The Linux Programmer's Guide</a></li>
+</ol>
+<a class="header" href="print.html#实验三-1" id="实验三-1"><h1>实验三</h1></a>
+<p>本实验为开放性编程实验，不限制程序功能。需要使用C语言实现三种不同的进程间通讯(Inter-Process Communication)方法。</p>
+<p>常见的进程间通讯方式有：</p>
+<ul>
+<li>消息队列（Message queues）</li>
+<li>信号量（Semaphores）</li>
+<li>共享内存（Shared memory）</li>
+<li>套接字（Sockets）</li>
+<li>内存映射（Mapped Memory）</li>
+<li>命名管道（FIFOS）</li>
+<li>管道（Pipe）</li>
+</ul>
+<a class="header" href="print.html#实验要求-1" id="实验要求-1"><h2>实验要求</h2></a>
+<ul>
+<li>使用<strong>C语言</strong>编写3个程序</li>
+<li>每个程序使用一种不同的进程间通讯方法</li>
+<li>每个程序可以包含一个或多个可执行文件（即：可以是同一个程序的不同进程间的通讯，也可以是不同程序的进程间的通讯）</li>
+<li>每个程序源代码<strong>不超过</strong>500行</li>
+<li>程序能够在Linux操作系统中编译、执行</li>
+<li>撰写一份说明文档描述你的作业，至少包含：
+<ul>
+<li>每个程序的功能描述</li>
+<li>每个程序源代码的存放位置</li>
+<li>如何编译、运行</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="print.html#编译环境-1" id="编译环境-1"><h2>编译环境</h2></a>
+<p>Ubuntu 16.04.2 core，包含以下包：</p>
+<ul>
+<li>build-essential（包含了gcc, make等工具）</li>
+<li>cmake</li>
+<li>autoconf</li>
+<li>automake</li>
+</ul>
+<p>如果编译需要其他工具（包），请在说明文件中指出。</p>
+<a class="header" href="print.html#参考资料-8" id="参考资料-8"><h2>参考资料</h2></a>
+<ol>
+<li><a href="http://advancedlinuxprogramming.com/alp-folder/alp-ch05-ipc.pdf">Advanced Linux Programming</a></li>
+<li><a href="http://tldp.org/LDP/lpg/node7.html">The Linux Programmer's Guide</a></li>
+</ol>
+<a class="header" href="print.html#作业提交-2" id="作业提交-2"><h1>作业提交</h1></a>
+<p>请在提交前仔细阅读<a href="commit.html">作业提交说明</a></p>
+<p>本次作业由人工批阅，请自行组织目录。在仓库根目录下存放一个文本格式的说明文件<code>README</code>（或<code>README.md</code>），中英文均可。</p>
+<p><em>注意：请勿提交Word文档！</em></p>
+<hr />
+<p>Git仓库中需包含：</p>
+<ul>
+<li>说明文件</li>
+<li>程序源代码</li>
+<li>可执行程序（可选）</li>
+</ul>
+<a class="header" href="print.html#截止时间-2" id="截止时间-2"><h2>截止时间</h2></a>
+<p>2017年4月15日 23:00</p>
+<a class="header" href="print.html#实验四" id="实验四"><h1>实验四</h1></a>
+<p>本实验旨在综合所学内容，了解内核漏洞，加深对操作系统内核的理解。要求编写一个完整的攻击程序，实现本地用户提权（即普通用户获得根用户权限）。</p>
+<a class="header" href="print.html#实验内容" id="实验内容"><h2>实验内容</h2></a>
+<p>请从三个漏洞中任选其一，编写一个攻击程序，实现本地用户提权。</p>
+<ul>
+<li>CVE-2017-6074（难度：低）</li>
+<li>CVE-2017-2636（难度：中）</li>
+<li>CVE-2016-5195（难度：低）</li>
+</ul>
+<p>目标内核：</p>
+<ul>
+<li>版本：4.4.25</li>
+<li>架构：x86_64</li>
+</ul>
+<p>为了降低攻击难度，测试时内核关闭KASLR, SMAP, SMEP特性。（内核参数中增加<code>nokaslr nosmap nosmep</code>）</p>
+<p>攻击程序在获得管理员权限后，应当在根目录下创建一个名为<code>success</code>的文件，所属用户、用户组均为<code>root</code>。评测程序将检查此文件，作为评分依据。</p>
+<p>如果编写完整攻击程序有困难，可以选择撰写一份漏洞报告，包括但不限于以下内容：</p>
+<ul>
+<li>漏洞来源
+<ul>
+<li>引入时间</li>
+<li>相关commit ID</li>
+</ul>
+</li>
+<li>漏洞产生原因</li>
+<li>漏洞修复
+<ul>
+<li>修复方法</li>
+<li>相关commit ID</li>
+</ul>
+</li>
+<li>漏洞危害(如何利用)</li>
+</ul>
+<p>由于本次实验将涉及多个先前没有接触的概念、方法，请大家善用搜索引擎。</p>
+<a class="header" href="print.html#实验四-1" id="实验四-1"><h1>实验四</h1></a>
+<p>本实验旨在综合所学内容，了解内核漏洞，加深对操作系统内核的理解。要求编写一个完整的攻击程序，实现本地用户提权（即普通用户获得根用户权限）。</p>
+<a class="header" href="print.html#实验内容-1" id="实验内容-1"><h2>实验内容</h2></a>
+<p>请从三个漏洞中任选其一，编写一个攻击程序，实现本地用户提权。</p>
+<ul>
+<li>CVE-2017-6074（难度：低）</li>
+<li>CVE-2017-2636（难度：中）</li>
+<li>CVE-2016-5195（难度：低）</li>
+</ul>
+<p>目标内核：</p>
+<ul>
+<li>版本：4.4.25</li>
+<li>架构：x86_64</li>
+</ul>
+<p>为了降低攻击难度，测试时内核关闭KASLR, SMAP, SMEP特性。（内核参数中增加<code>nokaslr nosmap nosmep</code>）</p>
+<p>攻击程序在获得管理员权限后，应当在根目录下创建一个名为<code>success</code>的文件，所属用户、用户组均为<code>root</code>。评测程序将检查此文件，作为评分依据。</p>
+<p>如果编写完整攻击程序有困难，可以选择撰写一份漏洞报告，包括但不限于以下内容：</p>
+<ul>
+<li>漏洞来源
+<ul>
+<li>引入时间</li>
+<li>相关commit ID</li>
+</ul>
+</li>
+<li>漏洞产生原因</li>
+<li>漏洞修复
+<ul>
+<li>修复方法</li>
+<li>相关commit ID</li>
+</ul>
+</li>
+<li>漏洞危害(如何利用)</li>
+</ul>
+<p>由于本次实验将涉及多个先前没有接触的概念、方法，请大家善用搜索引擎。</p>
+<a class="header" href="print.html#编译目标内核" id="编译目标内核"><h1>编译目标内核</h1></a>
+<p>为了构建测试环境，我们需要编译目标内核。编译方法与<a href="ex2/kernel.md">实验二</a>类似。</p>
+<a class="header" href="print.html#获取源代码-1" id="获取源代码-1"><h2>获取源代码</h2></a>
+<p>从kernel.org获取目标版本的内核代码：</p>
+<pre><code class="language-shell">git clone -b v4.4.25 git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+</code></pre>
+<p>也可以从科大镜像站获取：</p>
+<pre><code>git://mirrors.ustc.edu.cn/linux.git
+</code></pre>
+<p>注：对于<code>git clone</code>命令，可以使用<code>--depth</code>参数限制获取提交的深度，以减少clone时间。即：<code>git clone --depth=1 ...</code>。</p>
+<a class="header" href="print.html#编译-3" id="编译-3"><h2>编译</h2></a>
+<p>获取内核配置文件：</p>
+<pre><code class="language-shell">cd linux-stable
+curl -o .config https://gaoyifan.github.io/os-experiment/ex4/config
+</code></pre>
+<p>以上内核配置文件来源于ubuntu官方内核。开启了较多的选项，编译可能花费较长时间。</p>
+<p>编译并打包：</p>
+<pre><code>make -j `getconf _NPROCESSORS_ONLN` deb-pkg LOCALVERSION=-exploit
+</code></pre>
+<p>如果使用QEMU测试内核，直接生成bzImage即可，无需打包成debian package：</p>
+<pre><code>make -j `getconf _NPROCESSORS_ONLN`
+</code></pre>
+<p>注1：<code>-j</code>参数表示并行执行的任务数。建议配置为CPU线程数。</p>
+<p>注2：<code>getconf _NPROCESSORS_ONLN</code>命令可以获得CPU核心数量。</p>
+<p>注3：编译过程将产生较多的临时文件。建议预留20G磁盘空间。</p>
+<a class="header" href="print.html#安装可选" id="安装可选"><h2>安装（可选）</h2></a>
+<p>如果希望将内核安装在本机中，可以运行：</p>
+<pre><code class="language-shell">dpkg -i linux-image-4.4.25-exploit_4.4.25-exploit-1_amd64.deb
+</code></pre>
+<p>另，<code>linux-image-4.4.25-exploit-dbg_4.4.25-exploit-1_amd64.deb</code>包含了内核的调试符号，用于调试跟踪。</p>
+<p>如果希望在QEMU中运行，则不需要将内核安装在本地。</p>
+<a class="header" href="print.html#使用qemu测试内核可选" id="使用qemu测试内核可选"><h1>使用QEMU测试内核(可选)</h1></a>
+<p>由于内核测试存在一定的危险性，极有可能导致内核崩溃。如果在裸金属中测试，当内核崩溃后，需要物理重启计算机，效率较低。因此，建议在虚拟机中进行内核测试。如果Linux系统本身安装在虚拟机中，则可以略过这一部分。</p>
+<p>由于qemu十分脚本化测试，且方便替换内核，建议使用qemu作为虚拟软件。如果Linux系统本身安装在虚拟机中，则需要开启Hardware Assisted Virtualization特性，以实现虚拟机的嵌套。</p>
+<a class="header" href="print.html#参考资料-9" id="参考资料-9"><h2>参考资料</h2></a>
+<ol>
+<li><a href="http://blog.elastocloud.org/2015/06/rapid-linux-kernel-devtest-with-qemu.html">Rapid Linux Kernel Dev/Test with QEMU, KVM and Dracut</a></li>
+<li><a href="https://www.collabora.com/news-and-blog/blog/2017/01/16/setting-up-qemu-kvm-for-kernel-development/">Setting up QEMU-KVM for kernel development</a></li>
+<li><a href="http://tinylab.org/linux-lab/">Linux内核实验环境</a></li>
+</ol>
+<a class="header" href="print.html#漏洞介绍" id="漏洞介绍"><h1>漏洞介绍</h1></a>
+<p>本实验选取了3个不同类型的漏洞，大家可以根据自身情况选择。</p>
+<a class="header" href="print.html#cve-2017-6074" id="cve-2017-6074"><h2>CVE-2017-6074</h2></a>
+<p>DCCP模块中的一个double free类型的漏洞。</p>
+<a class="header" href="print.html#参考资料-10" id="参考资料-10"><h3>参考资料</h3></a>
+<ol>
+<li><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=5edabca9d4cff7f1f2b68f0bac55ef99d9798ba4">kernel commit</a></li>
+<li><a href="http://www.openwall.com/lists/oss-security/2017/02/22/3">CVE-2017-6074: DCCP double-free vulnerability (local root)</a></li>
+<li><a href="https://github.com/xairy/kernel-exploits/tree/master/CVE-2017-6074">POC</a></li>
+<li><a href="http://wps2015.org/drops/drops/Double%20Free%E6%B5%85%E6%9E%90.html">Double Free浅析</a></li>
+<li><a href="http://staff.ustc.edu.cn/%7Esycheng/ssat/ch04a_Heap_Overflow.pdf">缓冲区溢出——堆溢出</a></li>
+<li><a href="https://segmentfault.com/a/1190000005655132">Linux 堆溢出漏洞利用之 unlink</a></li>
+</ol>
+<a class="header" href="print.html#cve-2017-2636" id="cve-2017-2636"><h2>CVE-2017-2636</h2></a>
+<p>N_HLDC驱动在竞态条件下存在的一个double free类型漏洞。</p>
+<a class="header" href="print.html#参考资料-11" id="参考资料-11"><h3>参考资料</h3></a>
+<ol>
+<li><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=be10eb7589337e5defbe214dae038a53dd21add8">kernel commit</a></li>
+<li><a href="https://a13xp0p0v.github.io/2017/03/24/CVE-2017-2636.html">CVE-2017-2636: exploit the race condition in the n_hdlc Linux kernel driver bypassing SMEP</a></li>
+<li><a href="http://www.openwall.com/lists/oss-security/2017/03/07/6">CVE-2017-2636: local privilege escalation flaw in n_hdlc</a></li>
+<li><a href="http://wps2015.org/drops/drops/Double%20Free%E6%B5%85%E6%9E%90.html">Double Free浅析</a></li>
+<li><a href="http://staff.ustc.edu.cn/%7Esycheng/ssat/ch04a_Heap_Overflow.pdf">缓冲区溢出——堆溢出</a></li>
+<li><a href="https://segmentfault.com/a/1190000005655132">Linux 堆溢出漏洞利用之 unlink</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Race_condition">Race Condition</a></li>
+</ol>
+<a class="header" href="print.html#cve-2016-5195" id="cve-2016-5195"><h2>CVE-2016-5195</h2></a>
+<p>内存子系统在竞态条件下执行写时复制时存在漏洞，致使普通用户可获得其他用户只读内存映射的写入权限。</p>
+<a class="header" href="print.html#参考资料-12" id="参考资料-12"><h3>参考资料</h3></a>
+<ol>
+<li><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=19be0eaffa3ac7d8eb6784ad9bdbc7d67ed8e619">kernel commit</a></li>
+<li><a href="http://www.openwall.com/lists/oss-security/2016/10/21/1">CVE-2016-5195 &quot;Dirty COW&quot; Linux kernel privilege escalation vulnerability</a></li>
+<li><a href="https://dirtycow.ninja">dirtycow.ninja</a></li>
+<li><a href="https://github.com/dirtycow/dirtycow.github.io/wiki/PoCs">POCs</a></li>
+<li><a href="https://zh.wikipedia.org/zh-cn/%E5%AF%AB%E5%85%A5%E6%99%82%E8%A4%87%E8%A3%BD">写时复制</a></li>
+</ol>
+<a class="header" href="print.html#作业提交-3" id="作业提交-3"><h1>作业提交</h1></a>
+<p>请在提交前仔细阅读<a href="commit.html">作业提交说明</a></p>
+<pre><code>.
+├── README
+├── run.sh
+├── REPORT
+└── 其他文件(如：源代码)
+</code></pre>
+<p>仓库中应包含一个可执行文件<code>run.sh</code>。代码编译应在<code>run.sh</code>中完成，仓库中不应包含二进制可执行文件。</p>
+<p>如果选择撰写漏洞报告，请创建<code>REPORT</code>文件。（文本格式或MarkDown格式）</p>
+<p>如有其它需要说明的事项(如小组成员)，请记录在<code>README</code>文件中。（文本格式或MarkDown格式）</p>
+<p><strong>注意：</strong></p>
+<ol>
+<li>如果选择两人组队，仓库中应同时存在<code>run.sh</code>与<code>REPORT</code>文件。</li>
+<li>请在<code>run.sh</code>中使用相对路径引用git仓库中的文件。工作目录为仓库的根目录。</li>
+<li>如果你的程序可能导致内核崩溃（kernel panic），请在创建<code>/success</code>文件后，立刻执行<code>sync</code>命令，将修改写入本地磁盘。</li>
+<li>请勿提交Word文档。</li>
+</ol>
+<a class="header" href="print.html#组队说明" id="组队说明"><h2>组队说明</h2></a>
+<p>可以两人组队完成，亦可一人一组，同组成员只需上交一份作业。多人组队时，需<strong>同时</strong>完成漏洞报告与攻击程序。</p>
+<p>注意：原则上队伍人数不允许超过2人。如有特殊原因，队伍人数超过2人，请在<strong>事前</strong>取得许可（<a href="contact.html">联系助教</a>）。</p>
+<a class="header" href="print.html#测试环境" id="测试环境"><h2>测试环境</h2></a>
+<p>根文件系统：Ubuntu Core 16.04.2（已安装build-essential包）</p>
+<p>内核版本：4.4.25</p>
+<p>硬件环境：QEMU with KVM （宿主系统 Ubuntu Server 16.04.2）；2核CPU；1GB内存</p>
+<p>运行时限：20秒（从<code>run.sh</code>启动开始计时）</p>
+<a class="header" href="print.html#关于评分" id="关于评分"><h2>关于评分</h2></a>
+<p>本次实验作业由人工批阅，机器辅助。</p>
+<p>攻击程序评分将考量：</p>
+<ul>
+<li>攻击思路的正确性</li>
+<li>实现的正确性</li>
+</ul>
+<p>漏洞报告评分将综合考量：</p>
+<ul>
+<li>漏洞原因分析的正确性</li>
+<li>漏洞修复方法分析的正确性</li>
+<li>漏洞报告的完整性</li>
+<li>漏洞危害分析的质量</li>
+</ul>
+<a class="header" href="print.html#截止时间-3" id="截止时间-3"><h2>截止时间</h2></a>
+<p>6月16日 23:00</p>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+
+                
+
+            </div>
+
+            
+
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+    </body>
+</html>

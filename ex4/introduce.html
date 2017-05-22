@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>漏洞介绍 - </title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="../">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+
+        <!-- MathJax -->
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = localStorage.getItem('theme');
+            if (theme == null) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = localStorage.getItem('sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li><a href="about.html"><strong>1.</strong> 关于本文档</a></li><li><a href="information.html"><strong>2.</strong> 课程信息</a></li><li><ul class="section"><li><a href="introduction.html"><strong>2.1.</strong> 实验介绍</a></li><li><a href="commit.html"><strong>2.2.</strong> 作业提交说明</a></li><li><a href="resources.html"><strong>2.3.</strong> 课程资料</a></li><li><a href="contact.html"><strong>2.4.</strong> 联系助教</a></li></ul></li><li><a href="ex1/index.html"><strong>3.</strong> 实验一</a></li><li><ul class="section"><li><a href="ex1/index.html"><strong>3.1.</strong> 实验内容</a></li><li><ul class="section"><li><a href="ex1/linux_install.html"><strong>3.1.1.</strong> 安装Linux操作系统</a></li><li><a href="ex1/linux_command.html"><strong>3.1.2.</strong> 熟悉Linux操作系统的常用命令</a></li><li><a href="ex1/bash.html"><strong>3.1.3.</strong> 学习使用bash</a></li><li><a href="ex1/git.html"><strong>3.1.4.</strong> 学习使用Git</a></li><li><a href="ex1/github.html"><strong>3.1.5.</strong> 熟悉GitHub的使用流程</a></li></ul></li><li><a href="ex1/commit.html"><strong>3.2.</strong> 作业提交</a></li><li><a href="ex1/score.html"><strong>3.3.</strong> 评分规则</a></li></ul></li><li><a href="ex2/index.html"><strong>4.</strong> 实验二</a></li><li><ul class="section"><li><a href="ex2/index.html"><strong>4.1.</strong> 实验内容</a></li><li><ul class="section"><li><a href="ex2/before-reading.html"><strong>4.1.1.</strong> 写在前面</a></li><li><a href="ex2/environment.html"><strong>4.1.2.</strong> 准备环境</a></li><li><a href="ex2/kernel.html"><strong>4.1.3.</strong> 构建内核</a></li><li><a href="ex2/busybox.html"><strong>4.1.4.</strong> 构建busybox</a></li><li><a href="ex2/rootfs.html"><strong>4.1.5.</strong> 完善根文件系统</a></li><li><a href="ex2/run.html"><strong>4.1.6.</strong> 运行操作系统</a></li><li><a href="ex2/after-reading.html"><strong>4.1.7.</strong> 写在后面</a></li></ul></li><li><a href="ex2/commit.html"><strong>4.2.</strong> 作业提交</a></li><li><a href="ex2/score.html"><strong>4.3.</strong> 评分规则</a></li></ul></li><li><a href="ex3/index.html"><strong>5.</strong> 实验三</a></li><li><ul class="section"><li><a href="ex3/index.html"><strong>5.1.</strong> 实验内容</a></li><li><a href="ex3/commit.html"><strong>5.2.</strong> 作业提交</a></li></ul></li><li><a href="ex4/index.html"><strong>6.</strong> 实验四</a></li><li><ul class="section"><li><a href="ex4/index.html"><strong>6.1.</strong> 实验内容</a></li><li><ul class="section"><li><a href="ex4/kernel.html"><strong>6.1.1.</strong> 编译目标内核</a></li><li><a href="ex4/qemu.html"><strong>6.1.2.</strong> 使用QEMU测试内核</a></li><li><a href="ex4/introduce.html" class="active"><strong>6.1.3.</strong> 漏洞介绍</a></li></ul></li><li><a href="ex4/commit.html"><strong>6.2.</strong> 作业提交</a></li></ul></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush"></i>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="ex4/introduce.html#漏洞介绍" id="漏洞介绍"><h1>漏洞介绍</h1></a>
+<p>本实验选取了3个不同类型的漏洞，大家可以根据自身情况选择。</p>
+<a class="header" href="ex4/introduce.html#cve-2017-6074" id="cve-2017-6074"><h2>CVE-2017-6074</h2></a>
+<p>DCCP模块中的一个double free类型的漏洞。</p>
+<a class="header" href="ex4/introduce.html#参考资料" id="参考资料"><h3>参考资料</h3></a>
+<ol>
+<li><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=5edabca9d4cff7f1f2b68f0bac55ef99d9798ba4">kernel commit</a></li>
+<li><a href="http://www.openwall.com/lists/oss-security/2017/02/22/3">CVE-2017-6074: DCCP double-free vulnerability (local root)</a></li>
+<li><a href="https://github.com/xairy/kernel-exploits/tree/master/CVE-2017-6074">POC</a></li>
+<li><a href="http://wps2015.org/drops/drops/Double%20Free%E6%B5%85%E6%9E%90.html">Double Free浅析</a></li>
+<li><a href="http://staff.ustc.edu.cn/%7Esycheng/ssat/ch04a_Heap_Overflow.pdf">缓冲区溢出——堆溢出</a></li>
+<li><a href="https://segmentfault.com/a/1190000005655132">Linux 堆溢出漏洞利用之 unlink</a></li>
+</ol>
+<a class="header" href="ex4/introduce.html#cve-2017-2636" id="cve-2017-2636"><h2>CVE-2017-2636</h2></a>
+<p>N_HLDC驱动在竞态条件下存在的一个double free类型漏洞。</p>
+<a class="header" href="ex4/introduce.html#参考资料-1" id="参考资料-1"><h3>参考资料</h3></a>
+<ol>
+<li><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=be10eb7589337e5defbe214dae038a53dd21add8">kernel commit</a></li>
+<li><a href="https://a13xp0p0v.github.io/2017/03/24/CVE-2017-2636.html">CVE-2017-2636: exploit the race condition in the n_hdlc Linux kernel driver bypassing SMEP</a></li>
+<li><a href="http://www.openwall.com/lists/oss-security/2017/03/07/6">CVE-2017-2636: local privilege escalation flaw in n_hdlc</a></li>
+<li><a href="http://wps2015.org/drops/drops/Double%20Free%E6%B5%85%E6%9E%90.html">Double Free浅析</a></li>
+<li><a href="http://staff.ustc.edu.cn/%7Esycheng/ssat/ch04a_Heap_Overflow.pdf">缓冲区溢出——堆溢出</a></li>
+<li><a href="https://segmentfault.com/a/1190000005655132">Linux 堆溢出漏洞利用之 unlink</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Race_condition">Race Condition</a></li>
+</ol>
+<a class="header" href="ex4/introduce.html#cve-2016-5195" id="cve-2016-5195"><h2>CVE-2016-5195</h2></a>
+<p>内存子系统在竞态条件下执行写时复制时存在漏洞，致使普通用户可获得其他用户只读内存映射的写入权限。</p>
+<a class="header" href="ex4/introduce.html#参考资料-2" id="参考资料-2"><h3>参考资料</h3></a>
+<ol>
+<li><a href="https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=19be0eaffa3ac7d8eb6784ad9bdbc7d67ed8e619">kernel commit</a></li>
+<li><a href="http://www.openwall.com/lists/oss-security/2016/10/21/1">CVE-2016-5195 &quot;Dirty COW&quot; Linux kernel privilege escalation vulnerability</a></li>
+<li><a href="https://dirtycow.ninja">dirtycow.ninja</a></li>
+<li><a href="https://github.com/dirtycow/dirtycow.github.io/wiki/PoCs">POCs</a></li>
+<li><a href="https://zh.wikipedia.org/zh-cn/%E5%AF%AB%E5%85%A5%E6%99%82%E8%A4%87%E8%A3%BD">写时复制</a></li>
+</ol>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a href="ex4/qemu.html" class="mobile-nav-chapters previous">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="ex4/commit.html" class="mobile-nav-chapters next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="ex4/qemu.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="ex4/commit.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+    </body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>准备环境 - </title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="../">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+
+        <!-- MathJax -->
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = localStorage.getItem('theme');
+            if (theme == null) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = localStorage.getItem('sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li><a href="about.html"><strong>1.</strong> 关于本文档</a></li><li><a href="information.html"><strong>2.</strong> 课程信息</a></li><li><ul class="section"><li><a href="introduction.html"><strong>2.1.</strong> 实验介绍</a></li><li><a href="commit.html"><strong>2.2.</strong> 作业提交说明</a></li><li><a href="resources.html"><strong>2.3.</strong> 课程资料</a></li><li><a href="contact.html"><strong>2.4.</strong> 联系助教</a></li></ul></li><li><a href="ex1/index.html"><strong>3.</strong> 实验一</a></li><li><ul class="section"><li><a href="ex1/index.html"><strong>3.1.</strong> 实验内容</a></li><li><ul class="section"><li><a href="ex1/linux_install.html"><strong>3.1.1.</strong> 安装Linux操作系统</a></li><li><a href="ex1/linux_command.html"><strong>3.1.2.</strong> 熟悉Linux操作系统的常用命令</a></li><li><a href="ex1/bash.html"><strong>3.1.3.</strong> 学习使用bash</a></li><li><a href="ex1/git.html"><strong>3.1.4.</strong> 学习使用Git</a></li><li><a href="ex1/github.html"><strong>3.1.5.</strong> 熟悉GitHub的使用流程</a></li></ul></li><li><a href="ex1/commit.html"><strong>3.2.</strong> 作业提交</a></li><li><a href="ex1/score.html"><strong>3.3.</strong> 评分规则</a></li></ul></li><li><a href="ex2/index.html"><strong>4.</strong> 实验二</a></li><li><ul class="section"><li><a href="ex2/index.html"><strong>4.1.</strong> 实验内容</a></li><li><ul class="section"><li><a href="ex2/before-reading.html"><strong>4.1.1.</strong> 写在前面</a></li><li><a href="ex2/environment.html" class="active"><strong>4.1.2.</strong> 准备环境</a></li><li><a href="ex2/kernel.html"><strong>4.1.3.</strong> 构建内核</a></li><li><a href="ex2/busybox.html"><strong>4.1.4.</strong> 构建busybox</a></li><li><a href="ex2/rootfs.html"><strong>4.1.5.</strong> 完善根文件系统</a></li><li><a href="ex2/run.html"><strong>4.1.6.</strong> 运行操作系统</a></li><li><a href="ex2/after-reading.html"><strong>4.1.7.</strong> 写在后面</a></li></ul></li><li><a href="ex2/commit.html"><strong>4.2.</strong> 作业提交</a></li><li><a href="ex2/score.html"><strong>4.3.</strong> 评分规则</a></li></ul></li><li><a href="ex3/index.html"><strong>5.</strong> 实验三</a></li><li><ul class="section"><li><a href="ex3/index.html"><strong>5.1.</strong> 实验内容</a></li><li><a href="ex3/commit.html"><strong>5.2.</strong> 作业提交</a></li></ul></li><li><a href="ex4/index.html"><strong>6.</strong> 实验四</a></li><li><ul class="section"><li><a href="ex4/index.html"><strong>6.1.</strong> 实验内容</a></li><li><ul class="section"><li><a href="ex4/kernel.html"><strong>6.1.1.</strong> 编译目标内核</a></li><li><a href="ex4/qemu.html"><strong>6.1.2.</strong> 使用QEMU测试内核</a></li><li><a href="ex4/introduce.html"><strong>6.1.3.</strong> 漏洞介绍</a></li></ul></li><li><a href="ex4/commit.html"><strong>6.2.</strong> 作业提交</a></li></ul></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush"></i>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="ex2/environment.html#准备环境" id="准备环境"><h1>准备环境</h1></a>
+<p>为了避免环境不同所导致的编译错误，建议大家遵循本节内容准备一个用于编译目标操作系统的编译环境。</p>
+<p>如果使用的操作系统是ubuntu 16.04，则可以直接跳至<a href="ex2/environment.html#%E6%9B%B4%E6%96%B0%E4%BB%93%E5%BA%93%E7%B4%A2%E5%BC%95">更新仓库索引</a>部分。</p>
+<a class="header" href="ex2/environment.html#获取基础镜像" id="获取基础镜像"><h2>获取基础镜像</h2></a>
+<a class="header" href="ex2/environment.html#下载镜像压缩包" id="下载镜像压缩包"><h3>下载镜像压缩包</h3></a>
+<p>从Ubuntu官网下载<a href="http://cdimage.ubuntu.com/ubuntu-base/releases/16.04/release/ubuntu-base-16.04.2-base-amd64.tar.gz">Ubuntu 16.04.2 Base Image(AMD64)</a>：</p>
+<pre><code># wget -O /opt/ubuntu-base-16.04.2-base-amd64.tar.gz http://cdimage.ubuntu.com/ubuntu-base/releases/16.04/release/ubuntu-base-16.04.2-base-amd64.tar.gz
+</code></pre>
+<p>如果下载速度较慢，亦可从科大开源软件镜像站下载：</p>
+<pre><code># wget -O /opt/ubuntu-base-16.04.2-base-amd64.tar.gz http://mirrors.ustc.edu.cn/ubuntu-cdimage/ubuntu-base/releases/16.04/release/ubuntu-base-16.04.2-base-amd64.tar.gz
+</code></pre>
+<a class="header" href="ex2/environment.html#解压" id="解压"><h3>解压</h3></a>
+<p>解压镜像到<code>/opt/ubuntu</code></p>
+<pre><code># mkdir -pv /opt/ubuntu
+# cd /opt/ubuntu
+# tar xpzf ../ubuntu-base-16.04.2-base-amd64.tar.gz
+</code></pre>
+<a class="header" href="ex2/environment.html#切换根目录前的准备" id="切换根目录前的准备"><h2>切换根目录前的准备</h2></a>
+<a class="header" href="ex2/environment.html#配置dns" id="配置dns"><h3>配置DNS</h3></a>
+<p>将本机的DNS配置复制到新的rootfs中：</p>
+<pre><code># cp -v /etc/resolv.conf /opt/ubuntu/etc/resolv.conf
+</code></pre>
+<a class="header" href="ex2/environment.html#修改软件仓库地址可选" id="修改软件仓库地址可选"><h2>修改软件仓库地址（可选）</h2></a>
+<p>为了加快下载速度，可以将官方源地址修改为<a href="https://mirrors.ustc.edu.cn">科大开源镜像站</a>提供的镜像地址：</p>
+<pre><code># wget -O /opt/ubuntu/etc/apt/sources.list https://mirrors.ustc.edu.cn/repogen/conf/ubuntu-http-4-xenial
+</code></pre>
+<a class="header" href="ex2/environment.html#安装编译环境" id="安装编译环境"><h2>安装编译环境</h2></a>
+<a class="header" href="ex2/environment.html#改变根目录" id="改变根目录"><h3>改变根目录</h3></a>
+<p>下面的命令将改变根目录<code>/</code>所代表的实际指向，我们需要将其修改为刚才解压得到的ubuntu镜像：</p>
+<pre><code># chroot /opt/ubuntu /bin/bash
+</code></pre>
+<p>第二个参数<code>/bin/bash</code>表示在新的根目录环境中执行的命令。在这里，我们启动了一个bash shell。</p>
+<p>注：执行<code>exit</code>可以退出chroot环境。</p>
+<p><strong>请特别注意：下面的命令都将在新的根目录中执行！</strong></p>
+<a class="header" href="ex2/environment.html#更新仓库索引" id="更新仓库索引"><h3>更新仓库索引</h3></a>
+<pre><code># apt update
+</code></pre>
+<a class="header" href="ex2/environment.html#安装软件包" id="安装软件包"><h3>安装软件包</h3></a>
+<p>安装编译器及其他一些工具</p>
+<pre><code># apt install -y build-essential libncurses5-dev libgimp2.0-dev bc curl cpio
+</code></pre>
+<p>安装文本编辑器</p>
+<pre><code># apt install -y nano
+</code></pre>
+<p>P.S. 如果需要使用vim（emacs类似），请将命令修改为<code>apt install -y vim</code></p>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a href="ex2/before-reading.html" class="mobile-nav-chapters previous">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="ex2/kernel.html" class="mobile-nav-chapters next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="ex2/before-reading.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="ex2/kernel.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+    </body>
+</html>

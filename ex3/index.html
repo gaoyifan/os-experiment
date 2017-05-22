@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>实验内容 - </title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="../">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+
+        <!-- MathJax -->
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = localStorage.getItem('theme');
+            if (theme == null) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = localStorage.getItem('sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li><a href="about.html"><strong>1.</strong> 关于本文档</a></li><li><a href="information.html"><strong>2.</strong> 课程信息</a></li><li><ul class="section"><li><a href="introduction.html"><strong>2.1.</strong> 实验介绍</a></li><li><a href="commit.html"><strong>2.2.</strong> 作业提交说明</a></li><li><a href="resources.html"><strong>2.3.</strong> 课程资料</a></li><li><a href="contact.html"><strong>2.4.</strong> 联系助教</a></li></ul></li><li><a href="ex1/index.html"><strong>3.</strong> 实验一</a></li><li><ul class="section"><li><a href="ex1/index.html"><strong>3.1.</strong> 实验内容</a></li><li><ul class="section"><li><a href="ex1/linux_install.html"><strong>3.1.1.</strong> 安装Linux操作系统</a></li><li><a href="ex1/linux_command.html"><strong>3.1.2.</strong> 熟悉Linux操作系统的常用命令</a></li><li><a href="ex1/bash.html"><strong>3.1.3.</strong> 学习使用bash</a></li><li><a href="ex1/git.html"><strong>3.1.4.</strong> 学习使用Git</a></li><li><a href="ex1/github.html"><strong>3.1.5.</strong> 熟悉GitHub的使用流程</a></li></ul></li><li><a href="ex1/commit.html"><strong>3.2.</strong> 作业提交</a></li><li><a href="ex1/score.html"><strong>3.3.</strong> 评分规则</a></li></ul></li><li><a href="ex2/index.html"><strong>4.</strong> 实验二</a></li><li><ul class="section"><li><a href="ex2/index.html"><strong>4.1.</strong> 实验内容</a></li><li><ul class="section"><li><a href="ex2/before-reading.html"><strong>4.1.1.</strong> 写在前面</a></li><li><a href="ex2/environment.html"><strong>4.1.2.</strong> 准备环境</a></li><li><a href="ex2/kernel.html"><strong>4.1.3.</strong> 构建内核</a></li><li><a href="ex2/busybox.html"><strong>4.1.4.</strong> 构建busybox</a></li><li><a href="ex2/rootfs.html"><strong>4.1.5.</strong> 完善根文件系统</a></li><li><a href="ex2/run.html"><strong>4.1.6.</strong> 运行操作系统</a></li><li><a href="ex2/after-reading.html"><strong>4.1.7.</strong> 写在后面</a></li></ul></li><li><a href="ex2/commit.html"><strong>4.2.</strong> 作业提交</a></li><li><a href="ex2/score.html"><strong>4.3.</strong> 评分规则</a></li></ul></li><li><a href="ex3/index.html" class="active"><strong>5.</strong> 实验三</a></li><li><ul class="section"><li><a href="ex3/index.html" class="active"><strong>5.1.</strong> 实验内容</a></li><li><a href="ex3/commit.html"><strong>5.2.</strong> 作业提交</a></li></ul></li><li><a href="ex4/index.html"><strong>6.</strong> 实验四</a></li><li><ul class="section"><li><a href="ex4/index.html"><strong>6.1.</strong> 实验内容</a></li><li><ul class="section"><li><a href="ex4/kernel.html"><strong>6.1.1.</strong> 编译目标内核</a></li><li><a href="ex4/qemu.html"><strong>6.1.2.</strong> 使用QEMU测试内核</a></li><li><a href="ex4/introduce.html"><strong>6.1.3.</strong> 漏洞介绍</a></li></ul></li><li><a href="ex4/commit.html"><strong>6.2.</strong> 作业提交</a></li></ul></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush"></i>
+                    </div>
+
+                    <h1 class="menu-title"></h1>
+
+                    <div class="right-buttons">
+                        <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="ex3/index.html#实验三" id="实验三"><h1>实验三</h1></a>
+<p>本实验为开放性编程实验，不限制程序功能。需要使用C语言实现三种不同的进程间通讯(Inter-Process Communication)方法。</p>
+<p>常见的进程间通讯方式有：</p>
+<ul>
+<li>消息队列（Message queues）</li>
+<li>信号量（Semaphores）</li>
+<li>共享内存（Shared memory）</li>
+<li>套接字（Sockets）</li>
+<li>内存映射（Mapped Memory）</li>
+<li>命名管道（FIFOS）</li>
+<li>管道（Pipe）</li>
+</ul>
+<a class="header" href="ex3/index.html#实验要求" id="实验要求"><h2>实验要求</h2></a>
+<ul>
+<li>使用<strong>C语言</strong>编写3个程序</li>
+<li>每个程序使用一种不同的进程间通讯方法</li>
+<li>每个程序可以包含一个或多个可执行文件（即：可以是同一个程序的不同进程间的通讯，也可以是不同程序的进程间的通讯）</li>
+<li>每个程序源代码<strong>不超过</strong>500行</li>
+<li>程序能够在Linux操作系统中编译、执行</li>
+<li>撰写一份说明文档描述你的作业，至少包含：
+<ul>
+<li>每个程序的功能描述</li>
+<li>每个程序源代码的存放位置</li>
+<li>如何编译、运行</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="ex3/index.html#编译环境" id="编译环境"><h2>编译环境</h2></a>
+<p>Ubuntu 16.04.2 core，包含以下包：</p>
+<ul>
+<li>build-essential（包含了gcc, make等工具）</li>
+<li>cmake</li>
+<li>autoconf</li>
+<li>automake</li>
+</ul>
+<p>如果编译需要其他工具（包），请在说明文件中指出。</p>
+<a class="header" href="ex3/index.html#参考资料" id="参考资料"><h2>参考资料</h2></a>
+<ol>
+<li><a href="http://advancedlinuxprogramming.com/alp-folder/alp-ch05-ipc.pdf">Advanced Linux Programming</a></li>
+<li><a href="http://tldp.org/LDP/lpg/node7.html">The Linux Programmer's Guide</a></li>
+</ol>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a href="ex2/score.html" class="mobile-nav-chapters previous">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="ex3/index.html" class="mobile-nav-chapters next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="ex2/score.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="ex3/index.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+    </body>
+</html>
